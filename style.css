@@ -179,8 +179,8 @@ button:active {
         margin-right: 0;
         margin-bottom: 15px;
         /* Scaled down so it doesn't take over the whole screen */
-        width: 140px; 
-        height: 140px;
+        width: 100px; 
+        height: 100px;
         box-shadow: 0 8px 20px rgba(0,0,0,0.4);
     }
 
@@ -191,7 +191,7 @@ button:active {
     }
     
     #song-artist { 
-        font-size: 0.95rem; 
+        font-size: 0.6rem; 
     }
 
     .controls {
@@ -209,21 +209,21 @@ button:active {
 
 #playlist-selector {
     background: rgba(255, 255, 255, 0.1);
-    color: white;
+    color: rgb(74, 150, 236);
     border: 1px solid rgba(255, 255, 255, 0.3);
     border-radius: 8px;
     padding: 8px 12px;
     margin-bottom: 15px;
     font-family: inherit;
-    font-size: 0.9rem;
+    font-size: 0.6rem;
     outline: none;
     cursor: pointer;
-    width: 100%;
+    width: 50%;
 }
 
 #playlist-selector option {
     background: #1e1e1e; 
-    color: white;
+    color: rgb(74, 150, 236);;
 }
 
 
