@@ -1,0 +1,232 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body, html {
+    height: 100%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: white;
+    overflow: hidden; 
+}
+
+/* Background Setup */
+.bg-image {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-image: url('bg-portrait.webp'); 
+    background-size: cover;
+    background-position: center;
+    z-index: -2;
+}
+
+@media (min-width: 768px) {
+    .bg-image {
+        background-image: url('bg-landscape.webp');
+    }
+}
+
+.overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.45); 
+    z-index: -1;
+}
+
+/* Top Left Info */
+.top-left {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    text-transform: uppercase;
+}
+
+#live-time { font-size: 1.5rem; font-weight: bold; }
+#live-date { font-size: 0.8rem; letter-spacing: 1px; margin-bottom: 10px; color: #ccc;}
+.listeners { font-size: 0.9rem; font-weight: bold; color: #4ae38c; }
+.listeners span { color: white; }
+
+/* The Glass Player Card */
+.player-container {
+    position: absolute;
+    bottom: 50px;
+    left: 30px;
+    width: 600px; 
+    display: flex;
+    align-items: center;
+    background: rgba(30, 30, 30, 0.5); 
+    backdrop-filter: blur(20px); 
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.15); 
+    border-radius: 20px;
+    padding: 25px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+}
+
+#thumbnail {
+    width: 130px;
+    height: 130px;
+    border-radius: 12px;
+    object-fit: cover;
+    margin-right: 25px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.player-details {
+    flex-grow: 1;
+}
+
+#song-title { font-size: 1.6rem; margin-bottom: 5px; font-weight: bold; }
+#song-artist { font-size: 1rem; color: #ddd; margin-bottom: 3px; }
+
+/* Progress Controls */
+.progress-container { 
+    display: flex; /* Added missing flex layout */
+    align-items: center;
+    margin: 20px 0; 
+    font-size: 0.9rem; 
+}
+
+input[type=range] {
+    -webkit-appearance: none;
+    width: 100%;
+    background: transparent;
+    margin: 0 15px;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 5px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 3px;
+}
+
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 14px;
+    width: 14px;
+    border-radius: 50%;
+    background: white;
+    margin-top: -4.5px;
+    cursor: pointer;
+    box-shadow: 0 0 5px rgba(0,0,0,0.5);
+}
+
+/* Play/Pause Buttons */
+.controls {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+button {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: transform 0.1s ease-in-out;
+}
+
+button:active {
+    transform: scale(0.9);
+}
+
+.play-btn {
+    width: 50px;
+    height: 50px;
+    font-size: 1.5rem;
+    background: white;
+    color: black;
+    border-radius: 50%;
+    display: flex; /* Centers the play icon */
+    justify-content: center;
+    align-items: center;
+}
+
+#volume-slider { width: 80px; }
+
+/* Hide YouTube */
+#youtube-player {
+    position: absolute;
+    width: 0;
+    height: 0;
+    visibility: hidden;
+}
+
+/* Refined Mobile Layout */
+@media (max-width: 768px) {
+    .player-container {
+        /* Use percentages so it adapts perfectly to ANY phone width */
+        left: 5%;
+        right: 5%;
+        bottom: 30px;
+        width: 90%; 
+        
+        flex-direction: column; 
+        text-align: center;
+        
+        /* Reduce padding to make the card slimmer */
+        padding: 20px 15px; 
+        
+        /* Slightly more transparent to let the background shine through */
+        background: rgba(30, 30, 30, 0.35); 
+        border-radius: 20px;
+    }
+
+    #thumbnail {
+        margin-right: 0;
+        margin-bottom: 15px;
+        /* Scaled down so it doesn't take over the whole screen */
+        width: 100px; 
+        height: 100px;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+    }
+
+    /* Scale down the text slightly for better wrapping on narrow screens */
+    #song-title { 
+        font-size: 1.4rem; 
+        margin-bottom: 5px;
+    }
+    
+    #song-artist { 
+        font-size: 0.6rem; 
+    }
+
+    .controls {
+        justify-content: center; 
+        margin-top: 10px;
+        width: 100%;
+        gap: 15px; /* Slightly closer buttons on mobile */
+    }
+    
+    /* Keep volume hidden on phones */
+    #volume-slider, .volume-icon {
+        display: none; 
+    }
+}
+
+#playlist-selector {
+    background: rgba(255, 255, 255, 0.1);
+    color: rgb(239, 241, 243);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    padding: 8px 12px;
+    margin-bottom: 15px;
+    font-family: inherit;
+    font-size: 0.6rem;
+    outline: none;
+    cursor: pointer;
+    width: 50%;
+}
+
+#playlist-selector option {
+    background: #1e1e1e; 
+    color: rgb(253, 253, 253);;
+}
+
+
+
+
+
