@@ -790,7 +790,6 @@ const playlists = {
         // Add more songs here...
     ]
         // Add more songs here...
-    ]
 
 };
 
